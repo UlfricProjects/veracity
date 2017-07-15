@@ -2,6 +2,8 @@ package com.ulfric.veracity;
 
 import com.google.common.truth.FailureStrategy;
 
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -32,6 +34,19 @@ public final class PathSubject extends VeracitySubject<PathSubject, Path> {
 
 		if (!Files.isRegularFile(actual())) {
 			failed("is regular file");
+		}
+	}
+
+	public void contentEquals(String expected) {
+		isNotNull();
+
+		try {
+			String contents = new String(Files.readAllBytes(actual()));
+			if (!contents.equals(expected)) {
+				failed("content equals", contents, expected);
+			}
+		} catch (IOException e) {
+			throw new UncheckedIOException(e);
 		}
 	}
 
