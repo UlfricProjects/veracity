@@ -5,6 +5,8 @@ import com.google.common.truth.Subject;
 import com.google.common.truth.Truth;
 import com.google.gson.JsonElement;
 
+import javax.script.ScriptEngine;
+
 import java.lang.reflect.Constructor;
 import java.nio.file.Path;
 import java.util.function.BiFunction;
@@ -29,6 +31,10 @@ public class Veracity {
 
 	public static PathSubject assertThat(Path value) {
 		return subject(PathSubject::new, value);
+	}
+
+	public static ScriptEngineSubject assertThat(ScriptEngine value) {
+		return subject(ScriptEngineSubject::new, value);
 	}
 
 	private static <T, S extends Subject<S, T>> S subject(BiFunction<FailureStrategy, T, S> function, T value) {
