@@ -8,7 +8,6 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import com.google.common.truth.Truth;
 
 import com.ulfric.dragoon.reflect.Instances;
-import com.ulfric.veracity.Veracity;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -45,16 +44,6 @@ public abstract class BeanTestSuite<T> {
 	@BeforeEach
 	final void setupBeanSuite() {
 		bean = Instances.instance(beanType);
-	}
-
-	@Test
-	void testBeanMethodsArePresent() {
-		for (Field field : FieldUtils.getAllFieldsList(beanType)) {
-			String name = field.getName();
-			name = Character.toUpperCase(name.charAt(0)) + name.substring(1);
-			Veracity.assertThat(beanType).hasMethod("get" + name);
-			Veracity.assertThat(beanType).hasMethod("set" + name, field.getType());
-		}
 	}
 
 	@Test
