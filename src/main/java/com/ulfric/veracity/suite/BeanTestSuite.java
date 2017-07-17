@@ -9,28 +9,12 @@ import com.google.common.truth.Truth;
 
 import com.ulfric.dragoon.reflect.Instances;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
 
-import sun.misc.Unsafe;
-
-@SuppressWarnings("restriction")
 public abstract class BeanTestSuite<T> {
-
-	private static final sun.misc.Unsafe UNSAFE;
-
-	static {
-		try {
-			Field field = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
-			field.setAccessible(true);
-			UNSAFE = (Unsafe) field.get(null);
-		} catch (IllegalAccessException | NoSuchFieldException | SecurityException exception) {
-			throw new RuntimeException(exception);
-		}
-	}
 
 	private final Class<T> beanType;
 	protected T bean;
@@ -64,33 +48,13 @@ public abstract class BeanTestSuite<T> {
 			}
 
 			Object original = getter.invoke(bean);
-			Object newValue = instance(field.getType());
+			Object newValue = UnsafeHelper.instance(field.getType());
 			if (original == newValue) {
 				continue;
 			}
 
 			setter.invoke(bean, newValue);
 			Truth.assertThat(getter.invoke(bean)).isSameAs(newValue);
-		}
-	}
-
-	private Object instance(Class<?> type) {
-		if (type.isArray()) {
-			return Array.newInstance(type, 0);
-		}
-		if (type.isPrimitive()) {
-			return Array.get(Array.newInstance(type, 1), 0);
-		}
-
-		Object regular = Instances.instance(type);
-		if (regular != null) {
-			return regular;
-		}
-
-		try {
-			return UNSAFE.allocateInstance(type);
-		} catch (InstantiationException exception) {
-			throw new RuntimeException(exception);
 		}
 	}
 
