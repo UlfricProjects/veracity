@@ -37,6 +37,10 @@ public class Veracity {
 		return subject(ScriptEngineSubject::new, value);
 	}
 
+	public static ClassSubject assertThat(Class<?> value) {
+		return subject(ClassSubject::new, value);
+	}
+
 	private static <T, S extends Subject<S, T>> S subject(BiFunction<FailureStrategy, T, S> function, T value) {
 		return Truth.assertAbout(SubjectFactories.of(function)).that(value);
 	}
