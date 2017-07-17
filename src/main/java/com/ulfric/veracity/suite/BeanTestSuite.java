@@ -49,6 +49,10 @@ public abstract class BeanTestSuite<T> {
 	@Test
 	void testBeanMethodsModifyFields() throws Exception {
 		for (Field field : FieldUtils.getAllFieldsList(beanType)) {
+			if (field.isSynthetic()) {
+				continue;
+			}
+
 			String name = field.getName();
 			name = Character.toUpperCase(name.charAt(0)) + name.substring(1);
 
