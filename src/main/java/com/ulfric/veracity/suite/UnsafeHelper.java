@@ -4,6 +4,7 @@ import com.ulfric.dragoon.reflect.Instances;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.Proxy;
 
 @SuppressWarnings("restriction")
 public class UnsafeHelper {
@@ -26,6 +27,13 @@ public class UnsafeHelper {
 		}
 		if (type.isPrimitive()) {
 			return Array.get(Array.newInstance(type, 1), 0);
+		}
+		if (type == Class.class) {
+			return Object.class;
+		}
+		if (type.isInterface()) {
+			return Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[] { type },
+					(proxy, method, args) -> null);
 		}
 
 		Object regular = Instances.instance(type);
