@@ -9,6 +9,7 @@ import javax.script.ScriptEngine;
 
 import java.lang.reflect.Constructor;
 import java.nio.file.Path;
+import java.time.temporal.TemporalAmount;
 import java.util.function.BiFunction;
 
 public class Veracity {
@@ -35,6 +36,10 @@ public class Veracity {
 
 	public static ScriptEngineSubject assertThat(ScriptEngine value) {
 		return subject(ScriptEngineSubject::new, value);
+	}
+
+	public static TemporalAmountSubject assertThat(TemporalAmount value) {
+		return subject(TemporalAmountSubject::new, value);
 	}
 
 	private static <T, S extends Subject<S, T>> S subject(BiFunction<FailureStrategy, T, S> function, T value) {
