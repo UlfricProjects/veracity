@@ -7,7 +7,6 @@
 	<groupId>com.ulfric.veracity</groupId>
 	<artifactId>veracity</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
 
 	<build>
 		<defaultGoal>clean install</defaultGoal>
@@ -143,6 +142,13 @@
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 			<version>5.0.0-M5</version>
+		</dependency>
+
+		<dependency>
+			 <!-- Object mocking -->
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>2.0.2-beta</version>
 		</dependency>
 	</dependencies>
 
