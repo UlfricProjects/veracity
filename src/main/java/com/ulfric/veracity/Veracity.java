@@ -1,5 +1,7 @@
 package com.ulfric.veracity;
 
+import org.w3c.dom.Node;
+
 import com.google.common.truth.FailureStrategy;
 import com.google.common.truth.Subject;
 import com.google.common.truth.Truth;
@@ -40,6 +42,10 @@ public class Veracity {
 
 	public static TemporalAmountSubject assertThat(TemporalAmount value) {
 		return subject(TemporalAmountSubject::new, value);
+	}
+
+	public static NodeSubject assertThat(Node value) {
+		return subject(NodeSubject::new, value);
 	}
 
 	private static <T, S extends Subject<S, T>> S subject(BiFunction<FailureStrategy, T, S> function, T value) {
