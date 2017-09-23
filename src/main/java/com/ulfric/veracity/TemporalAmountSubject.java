@@ -1,16 +1,15 @@
 package com.ulfric.veracity;
 
-import com.google.common.truth.FailureStrategy;
+import com.google.common.truth.FailureMetadata;
 
 import java.time.Duration;
 import java.time.temporal.TemporalAmount;
 
 public final class TemporalAmountSubject extends VeracitySubject<TemporalAmountSubject, TemporalAmount> {
 
-	public TemporalAmountSubject(FailureStrategy failureStrategy, TemporalAmount actual) {
-		super(failureStrategy, actual);
+	public TemporalAmountSubject(FailureMetadata metadata, TemporalAmount actual) {
+		super(metadata, actual);
 	}
-
 	public void isEqualToWithinMarginOfError(Duration duration) {
 		isNotNull();
 

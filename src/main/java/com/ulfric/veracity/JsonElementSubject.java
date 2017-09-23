@@ -1,12 +1,12 @@
 package com.ulfric.veracity;
 
-import com.google.common.truth.FailureStrategy;
+import com.google.common.truth.FailureMetadata;
 import com.google.gson.JsonElement;
 
 public class JsonElementSubject extends JsonSubject<JsonElement> {
 
-	public JsonElementSubject(FailureStrategy failureStrategy, JsonElement actual) {
-		super(failureStrategy, actual);
+	public JsonElementSubject(FailureMetadata metadata, JsonElement actual) {
+		super(metadata, actual);
 	}
 
 }

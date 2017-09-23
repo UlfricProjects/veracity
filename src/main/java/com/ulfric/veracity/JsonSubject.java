@@ -1,12 +1,12 @@
 package com.ulfric.veracity;
 
-import com.google.common.truth.FailureStrategy;
+import com.google.common.truth.FailureMetadata;
 import com.google.gson.JsonElement;
 
 public abstract class JsonSubject<T extends JsonElement> extends VeracitySubject<JsonSubject<T>, T> {
 
-	public JsonSubject(FailureStrategy failureStrategy, T actual) {
-		super(failureStrategy, actual);
+	public JsonSubject(FailureMetadata metadata, T actual) {
+		super(metadata, actual);
 	}
 
 	public final void isJsonArray() {

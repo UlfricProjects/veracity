@@ -1,6 +1,6 @@
 package com.ulfric.veracity;
 
-import com.google.common.truth.FailureStrategy;
+import com.google.common.truth.FailureMetadata;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -9,8 +9,8 @@ import java.nio.file.Path;
 
 public final class PathSubject extends VeracitySubject<PathSubject, Path> {
 
-	public PathSubject(FailureStrategy failureStrategy, Path actual) {
-		super(failureStrategy, actual);
+	public PathSubject(FailureMetadata metadata, Path actual) {
+		super(metadata, actual);
 	}
 
 	public void exists() {

@@ -1,11 +1,11 @@
 package com.ulfric.veracity;
 
-import com.google.common.truth.FailureStrategy;
+import com.google.common.truth.FailureMetadata;
 
 public final class CheckedRunnableSubject extends VeracitySubject<CheckedRunnableSubject, CheckedRunnable> {
 
-	public CheckedRunnableSubject(FailureStrategy failureStrategy, CheckedRunnable actual) {
-		super(failureStrategy, actual);
+	public CheckedRunnableSubject(FailureMetadata metadata, CheckedRunnable actual) {
+		super(metadata, actual);
 	}
 
 	public void runsWithoutExceptions() {

@@ -1,12 +1,12 @@
 package com.ulfric.veracity;
 
-import com.google.common.truth.FailureStrategy;
+import com.google.common.truth.FailureMetadata;
 import com.google.common.truth.Subject;
 
 public abstract class VeracitySubject<S extends Subject<S, T>, T> extends Subject<S, T> implements ObjectAssertions<T> {
 
-	public VeracitySubject(FailureStrategy failureStrategy, T actual) {
-		super(failureStrategy, actual);
+	public VeracitySubject(FailureMetadata metadata, T actual) {
+		super(metadata, actual);
 	}
 
 	@Override

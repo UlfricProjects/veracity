@@ -1,6 +1,6 @@
 package com.ulfric.veracity;
 
-import com.google.common.truth.FailureStrategy;
+import com.google.common.truth.FailureMetadata;
 
 import javax.script.ScriptEngine;
 
@@ -8,8 +8,8 @@ import java.util.Objects;
 
 public final class ScriptEngineSubject extends VeracitySubject<ScriptEngineSubject, ScriptEngine> implements NamedAssertions<ScriptEngine> {
 
-	public ScriptEngineSubject(FailureStrategy failureStrategy, ScriptEngine actual) {
-		super(failureStrategy, actual);
+	public ScriptEngineSubject(FailureMetadata metadata, ScriptEngine actual) {
+		super(metadata, actual);
 	}
 
 	@Override

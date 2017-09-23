@@ -2,7 +2,7 @@ package com.ulfric.veracity;
 
 import org.w3c.dom.Node;
 
-import com.google.common.truth.FailureStrategy;
+import com.google.common.truth.FailureMetadata;
 import com.google.common.truth.Subject;
 import com.google.common.truth.Truth;
 import com.google.gson.JsonElement;
@@ -17,6 +17,7 @@ import java.util.function.BiFunction;
 public class Veracity {
 
 	public static ThreadSubject assertThat(Thread value) {
+		
 		return subject(ThreadSubject::new, value);
 	}
 
@@ -48,7 +49,7 @@ public class Veracity {
 		return subject(NodeSubject::new, value);
 	}
 
-	private static <T, S extends Subject<S, T>> S subject(BiFunction<FailureStrategy, T, S> function, T value) {
+	private static <T, S extends Subject<S, T>> S subject(BiFunction<FailureMetadata, T, S> function, T value) {
 		return Truth.assertAbout(SubjectFactories.of(function)).that(value);
 	}
 

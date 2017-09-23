@@ -1,14 +1,14 @@
 package com.ulfric.veracity;
 
-import com.google.common.truth.FailureStrategy;
+import com.google.common.truth.FailureMetadata;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 
 public final class ConstructorSubject extends VeracitySubject<ConstructorSubject, Constructor<?>> {
 
-	public ConstructorSubject(FailureStrategy failureStrategy, Constructor<?> actual) {
-		super(failureStrategy, actual);
+	public ConstructorSubject(FailureMetadata metadata, Constructor<?> actual) {
+		super(metadata, actual);
 	}
 
 	public void isPrivate() {

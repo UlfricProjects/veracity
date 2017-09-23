@@ -1,18 +1,17 @@
 package com.ulfric.veracity;
 
-import com.google.common.truth.FailureStrategy;
+import com.google.common.truth.FailureMetadata;
 import com.google.common.truth.Subject;
-import com.google.common.truth.SubjectFactory;
 
 import java.util.function.BiFunction;
 
 public class SubjectFactories {
 
-	public static <T, S extends Subject<S, T>> SubjectFactory<S, T> of(BiFunction<FailureStrategy, T, S> function) {
-		return new SubjectFactory<S, T>() {
+	public static <T, S extends Subject<S, T>> Subject.Factory<S, T> of(BiFunction<FailureMetadata, T, S> function) {
+		return new Subject.Factory<S, T>() {
 
 			@Override
-			public S getSubject(FailureStrategy failure, T target) {
+			public S createSubject(FailureMetadata failure, T target) {
 				return function.apply(failure, target);
 			}
 
