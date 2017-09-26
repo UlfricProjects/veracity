@@ -14,12 +14,12 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
 
-public abstract class BeanTestSuite<T> {
+public abstract class BeanTestSuite {
 
-	private final Class<T> beanType;
-	protected T bean;
+	private final Class<?> beanType;
+	protected Object bean;
 
-	protected BeanTestSuite(Class<T> beanType) {
+	protected BeanTestSuite(Class<?> beanType) {
 		Objects.requireNonNull(beanType, "beanType");
 
 		this.beanType = beanType;
@@ -34,6 +34,10 @@ public abstract class BeanTestSuite<T> {
 	void testBeanMethodsModifyFields() throws Exception {
 		for (Field field : FieldUtils.getAllFieldsList(beanType)) {
 			if (field.isSynthetic()) {
+				continue;
+			}
+
+			if (Modifier.isStatic(field.getModifiers())) {
 				continue;
 			}
 
