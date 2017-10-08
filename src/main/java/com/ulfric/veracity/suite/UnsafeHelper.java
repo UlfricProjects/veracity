@@ -6,7 +6,6 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
 
-@SuppressWarnings("restriction")
 public class UnsafeHelper {
 
 	private static final sun.misc.Unsafe UNSAFE;
