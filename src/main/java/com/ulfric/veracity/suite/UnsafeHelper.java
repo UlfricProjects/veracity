@@ -6,6 +6,8 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
 
+import org.mockito.Mockito;
+
 public class UnsafeHelper {
 
 	private static final sun.misc.Unsafe UNSAFE;
@@ -43,7 +45,11 @@ public class UnsafeHelper {
 		try {
 			return UNSAFE.allocateInstance(type);
 		} catch (InstantiationException exception) {
-			throw new RuntimeException(exception);
+			try {
+				return Mockito.mock(type);
+			} catch (Exception thrown) {
+				throw new RuntimeException(thrown);
+			}
 		}
 	}
 
