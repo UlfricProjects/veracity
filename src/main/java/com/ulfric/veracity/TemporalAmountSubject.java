@@ -10,12 +10,13 @@ public final class TemporalAmountSubject extends VeracitySubject<TemporalAmountS
 	public TemporalAmountSubject(FailureMetadata metadata, TemporalAmount actual) {
 		super(metadata, actual);
 	}
+
 	public void isEqualToWithinMarginOfError(Duration duration) {
 		isNotNull();
 
 		long difference = Math.abs(Duration.from(actual()).toMillis() - duration.toMillis());
-		if (difference > 1) {
-			failed("within margin of error");
+		if (difference > 5) {
+			failed("within margin of error", difference);
 		}
 	}
 
